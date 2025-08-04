@@ -13,7 +13,7 @@ const Manager = () => {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const getPasswords = async () => {
-    let req = await fetch(`${BACKEND_URL}/`);
+    let req = await fetch(`${BACKEND_URL}/getpasswords`);
     let passwords = await req.json();
     console.log(passwords)
     setPasswordArray(passwords);
@@ -64,7 +64,7 @@ const Manager = () => {
   
       if (form.id) {
         // Editing: delete old version by id
-        await fetch(`${BACKEND_URL}/`, {
+        await fetch(`${BACKEND_URL}/delete`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -74,7 +74,7 @@ const Manager = () => {
       }
   
       // Save new or edited password
-      await fetch(`${BACKEND_URL}/`, {
+      await fetch(`${BACKEND_URL}/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -112,7 +112,7 @@ const Manager = () => {
       //   "passwords",
       //   JSON.stringify(passwordArray.filter((item) => item.id != id))
       // );
-      let res = await fetch(`${BACKEND_URL}/`, {method: "DELETE", headers: {"Content-Type": "application/json"},
+      let res = await fetch(`${BACKEND_URL}/delete`, {method: "DELETE", headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ id}) })
 
       toast("Password Deleted!", {
