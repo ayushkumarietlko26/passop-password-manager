@@ -10,7 +10,7 @@ const Manager = () => {
   const passwordRef = useRef();
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+  const BACKEND_URL = "https://passop-password-manager-mongouri.up.railway.app";
 
   const getPasswords = async () => {
     let req = await fetch(`${BACKEND_URL}/`);
