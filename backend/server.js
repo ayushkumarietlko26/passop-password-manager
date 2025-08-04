@@ -7,8 +7,9 @@ const cors = require('cors')
 dotnev.config()
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
-const client = new MongoClient(url);
+// const url = 'mongodb://localhost:27017';
+const url = process.env.MONGO_URI;
+const client = new MongoClient(process.env.MONGO_URI);
 
 // Database Name
 const dbName = 'passop';
