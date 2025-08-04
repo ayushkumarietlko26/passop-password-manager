@@ -10,10 +10,9 @@ const Manager = () => {
   const passwordRef = useRef();
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
-  const BACKEND_URL = "https://passop-password-manager-mongouri.up.railway.app";
 
   const getPasswords = async () => {
-    let req = await fetch(`${BACKEND_URL}/`);
+    let req = await fetch("http://localhost:3000/");
     let passwords = await req.json();
     console.log(passwords)
     setPasswordArray(passwords);
@@ -64,7 +63,7 @@ const Manager = () => {
   
       if (form.id) {
         // Editing: delete old version by id
-        await fetch(`${BACKEND_URL}/`, {
+        await fetch("http://localhost:3000/", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -74,7 +73,7 @@ const Manager = () => {
       }
   
       // Save new or edited password
-      await fetch(`${BACKEND_URL}/`, {
+      await fetch("http://localhost:3000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -112,7 +111,7 @@ const Manager = () => {
       //   "passwords",
       //   JSON.stringify(passwordArray.filter((item) => item.id != id))
       // );
-      let res = await fetch(`${BACKEND_URL}/`, {method: "DELETE", headers: {"Content-Type": "application/json"},
+      let res = await fetch("http://localhost:3000/", {method: "DELETE", headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ id}) })
 
       toast("Password Deleted!", {
